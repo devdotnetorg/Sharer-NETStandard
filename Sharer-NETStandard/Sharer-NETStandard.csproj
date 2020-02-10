@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Sharer_NETStandard</RootNamespace>
+    <PackageId>Sharer</PackageId>
+    <Authors>Sharer</Authors>
+    <Company>Sharer</Company>
+    <Product>Sharer</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Command\Commands\" />
+    <Folder Include="FunctionCall\" />
+    <Folder Include="Variables\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>
