@@ -6,7 +6,7 @@ Sharer is an Arduino library that facilitates the communication between a PC(Win
 You chose the functions and variables you want to share with your application and your arduino board. Functions can be easily remotly called.
 
 
-Link to ![Arduino library Sharer](https://github.com/devdotnetorg/Sharer)
+Link to [Arduino library Sharer](https://github.com/devdotnetorg/Sharer)
 
 ![Sharer](RemoteFunctionCall.png)
 
@@ -118,7 +118,7 @@ Example code with delays, the error does not appear:
 // Scan all functions shared
 	if (connection != null && connection.Connected)
     	{
-        	//Only required for Linux
+            //Only required for Linux
             Task.Delay(2000).Wait(); // Wait 2 seconds with blocking
             connection.RefreshFunctions();
             //Only required for Linux
@@ -144,8 +144,7 @@ Run a container:
 ``` bach
 $docker run --rm -it --device=/dev/ttyACM0 devdotnetorg/sharernetcore:x86test-11
 ```
-where, /dev/ttyACM0 - Arduino Linux port(via USB).
-To see all available COM ports, run the command: $ls -l /dev | grep dialout
+where, /dev/ttyACM0 - Arduino Linux port(via USB). To see all available COM ports, run the command: $ls -l /dev | grep dialout
 
 
 ### ARM
@@ -168,8 +167,15 @@ where, /dev/ttyACM0 - Arduino Linux port(via USB).
 Test performed on board [Cubieboard A10](https://github.com/devdotnetorg/Cubieboard) OS [Armbian](https://www.armbian.com/cubieboard-1/) Ubuntu 18.04 .Net Core 3.1.
 
 ## Pictures:
+![Sharer](SharerAndCubieboard1.png)
+
+![Sharer](SharerAndCubieboard3.png)
 
 
-Sharer.NET library author: [Rufus31415](https://github.com/Rufus31415/Sharer)
+Sharer.NET library author: [Rufus31415](https://github.com/Rufus31415/Sharer).
+
+
 The Sharer.NET library was ported by [Anton DevDotNet.Org](https://github.com/devdotnetorg/Sharer-NETStandard).
+
+
 Author of Docker files [Anton DevDotNet.Org](https://github.com/devdotnetorg/Sharer-NETStandard).
