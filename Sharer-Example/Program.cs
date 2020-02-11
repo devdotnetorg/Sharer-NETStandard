@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Ports;
+using System.Threading.Tasks;
 using Sharer;
 
 namespace Sharer_Example
@@ -11,7 +12,7 @@ namespace Sharer_Example
         {
             try
             {
-                Console.WriteLine("Sharer_Example");
+                Console.WriteLine("Sharer_Example build 11");
                 Console.WriteLine("Connect Arduino to PC");
                 Console.WriteLine("[Press any key to continue...]");
                 Console.ReadKey();
@@ -27,12 +28,12 @@ namespace Sharer_Example
                     Console.WriteLine("No Serial Port Available");
                     Environment.Exit(-1);
                 }
-                string _portName = String.Empty;
+                string _portName = String.Empty; //Serial port
                 do
                 {
                     for (int i = 1; i <= _listPorts.Count; i++)
                     {
-                        Console.WriteLine(String.Format("{0}. {1}", i, _listPorts[0]));
+                        Console.WriteLine(String.Format("{0}. {1}", i, _listPorts[i-1]));
                     }
                     Console.Write("Select the COM-port number and press Enter: ");
                     var _strSelectNumberPort = Console.ReadLine();
@@ -45,26 +46,30 @@ namespace Sharer_Example
                     }
                 } while (_portName == String.Empty);
                 // Connect to Arduino board
+                Console.WriteLine("Select Port: "+ _portName);
                 var connection = new SharerConnection(_portName, 115200);
+                //       
                 connection.Ready += _connection_Ready;
                 connection.InternalError += _connection_InternalError;
+                Console.WriteLine("Connect...");
                 connection.Connect();
                 // Scan all functions shared
                 if (connection != null && connection.Connected)
                 {
+                    //Only required for Linux
+                    Task.Delay(2000).Wait(); // Wait 2 seconds with blocking
                     connection.RefreshFunctions();
+                    //Only required for Linux
+                    Task.Delay(2000).Wait(); // Wait 2 seconds with blocking
                     connection.RefreshVariables();
-                }else
+                }
+                else
                 {
                     Console.WriteLine("No Connection");
                     Environment.Exit(-1);
                 }
                 int _intSelectTask=0;
-
-
-
-                //Check-A
-
+                //
                 do
                 {
                     //Select Task
@@ -127,6 +132,8 @@ namespace Sharer_Example
                 //
                 if (connection != null)
                 {
+                    //Only required for Linux
+                    Task.Delay(2000).Wait(); // Wait 1 seconds with blocking
                     connection.Disconnect();
                 }
                 return 0;
@@ -151,6 +158,7 @@ namespace Sharer_Example
         private static void _connection_Ready(object sender, EventArgs e)
         {
             //Ready
+            Console.WriteLine("Event Ready");
         }
     }
 }

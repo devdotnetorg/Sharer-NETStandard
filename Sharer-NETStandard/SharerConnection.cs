@@ -21,7 +21,7 @@ namespace Sharer
         };
 
         private const Byte SHARER_START_COMMAND_CHAR = 0x92;
-        private TimeSpan DEFAULT_TIMEOUT = new TimeSpan(0, 0, 2);
+        private TimeSpan DEFAULT_TIMEOUT = new TimeSpan(0, 0, 5); //source option: (0, 0, 20) 
 
         private SerialPort _serialPort = new SerialPort();
 
@@ -39,9 +39,13 @@ namespace Sharer
 
             _serialPort.Handshake = handShake;
 
+            //ADD
+            _serialPort.RtsEnable = true;
+            //
+
             // Set the read/write timeouts
-            _serialPort.ReadTimeout = 500;
-            _serialPort.WriteTimeout = 500;
+            _serialPort.ReadTimeout = 1000; //source option: 500
+            _serialPort.WriteTimeout = 1000; //source option: 500
 
             _receiveStep = ReceiveSteps.Free;
 
@@ -63,12 +67,14 @@ namespace Sharer
             return SerialPort.GetPortNames();
         }
 
-       private void serialPort_DataReceived(object s, SerialDataReceivedEventArgs e)
+       private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            SerialPort sp = (SerialPort)sender;
+            //
             try
             {
-                byte[] data = new byte[_serialPort.BytesToRead];
-                int count = _serialPort.Read(data, 0, data.Length);
+                byte[] data = new byte[sp.BytesToRead];
+                int count = sp.Read(data, 0, data.Length);
 
                 if (count > 0)
                 {    

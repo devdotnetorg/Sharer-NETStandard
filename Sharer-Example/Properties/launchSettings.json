@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Sharer-Example": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

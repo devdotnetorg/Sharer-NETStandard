@@ -1,12 +1,14 @@
 // Sharer-Arduino
 //
 // shows the use of the Sharer library.
+// Sharer - https://github.com/devdotnetorg/Sharer
+// Sharer-NETStandard - https://github.com/devdotnetorg/Sharer-NETStandard
 //
 // Copyright DevDotNet.ORG (c) 2020
 //
 // Arduino - LED, DS18S20
-//LED built-in
-//DS18S20 Signal pin on digital 8
+// LED built-in
+// DS18S20 Signal pin on digital 8
 //
 // other pins can be left unconnected.
 
@@ -80,14 +82,14 @@ float getTemp(){
 
 void setup() {
   
+  //debug
   // put your setup code here, to run once:
-  Serial.begin(9600);
-  
+  //Serial.begin(9600);
+
+  //LED
   pinMode(LED_BUILTIN, OUTPUT);
-  
   // Init Sharer and declare your function to share
   Sharer.init(115200); // Init Serial communication with 115200 bauds
-
   // Expose this function to Sharer
   Sharer_ShareFunction(int, Sum, int, a, byte, b);
   Sharer_ShareFunction(int, setLed, bool, state);
@@ -98,7 +100,7 @@ void setup() {
 // Run Sharer engine in the main Loop
 void loop() {
   Sharer.run();
-
+  
   //For local Test
   /*
   float temperature = getTemp();

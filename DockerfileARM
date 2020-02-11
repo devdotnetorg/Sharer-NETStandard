@@ -10,6 +10,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["Sharer-Example/Sharer-Example.csproj", "Sharer-Example/"]
+COPY ["Sharer-NETStandard/Sharer-NETStandard.csproj", "Sharer-NETStandard/"]
 RUN dotnet restore "Sharer-Example/Sharer-Example.csproj"
 COPY . .
 WORKDIR "/src/Sharer-Example"
@@ -21,5 +22,4 @@ RUN dotnet publish "Sharer-Example.csproj" -c Release -o /app/publish -r linux-a
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-VOLUME ["/app/logs"]
 ENTRYPOINT ["dotnet", "Sharer-Example.dll"]
