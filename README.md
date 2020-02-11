@@ -169,7 +169,7 @@ Test performed on board [Cubieboard A10](https://github.com/devdotnetorg/Cubiebo
 ## Pictures:
 ![Sharer](SharerAndCubieboard1.png)
 
-![Sharer](SharerAndCubieboard3.png)
+![Sharer](SharerAndCubieboard3.jpg)
 
 
 Sharer.NET library author: [Rufus31415](https://github.com/Rufus31415/Sharer).
